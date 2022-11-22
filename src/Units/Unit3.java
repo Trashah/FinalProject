@@ -9,6 +9,11 @@ public class Unit3 {
     static Integer Elementomin;
     static Integer numero;
 
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
+    }
+
     static void isFull(Stack<Integer> pila) {
         if (!pila.isEmpty()) {
             System.out.println("La pila no contiene valores");
@@ -121,17 +126,18 @@ public class Unit3 {
             default:
                 System.out.println("Opción no válida");
             }
-            
-        displaymenu();
-        opcion.nextInt();
-        while (!opcion.hasNextInt()) {
-            System.out.println("Inserte un valor entero");
+            displaymenu();
             opcion.nextInt();
+            while (!opcion.hasNextInt()) {
+                System.out.println("Inserte un valor entero");
+                opcion.nextInt();
+            }
+            opcionmenu = opcion.nextInt();
+            opcion.nextLine();
         }
-        opcionmenu = opcion.nextInt();
         opcion.nextLine();
-        }
         opcion.close();
+        clearScreen();
         return;
     }
 }

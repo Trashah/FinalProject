@@ -43,15 +43,11 @@ public class GUI implements ActionListener {
     public void button1Pressed() { Units.Unit1.main(new String[0]); }
     public void button2Pressed() { Units.Unit2.main(new String[0]); }
     public void button3Pressed() { Units.Unit3.main(new String[0]); }
-    public void button4Pressed() { }
+    public void button4Pressed() { Units.Unit4.main(new String[0]); }
 
     public static void main (String args[]) {
         new GUI();
     }
 
-    public void actionPerformed(ActionEvent e) {
-        
-    }
-
-    
+    public void actionPerformed(ActionEvent e) { }
 }
