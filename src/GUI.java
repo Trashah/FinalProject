@@ -17,15 +17,15 @@ public class GUI implements ActionListener {
         JButton button2 = new JButton("Unidad 2");
         JButton button3 = new JButton("Unidad 3");
         JButton button4 = new JButton("Unidad 4");
-        button1.addActionListener(this);
-        button2.addActionListener(this);
-        button3.addActionListener(this);
-        button4.addActionListener(this);
+        button1.addActionListener(e -> button1Pressed());
+        button2.addActionListener(e -> button2Pressed());
+        button3.addActionListener(e -> button3Pressed());
+        button4.addActionListener(e -> button4Pressed());
 
         label = new JLabel("Seleccione una unidad.");
 
         panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 20, 50));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(button1);
         panel.add(button2);
@@ -40,11 +40,18 @@ public class GUI implements ActionListener {
         frame.setVisible(true);
     }
 
-    public static void main (String[] args) {
+    public void button1Pressed() { Units.Unit1.main(new String[0]); }
+    public void button2Pressed() { Units.Unit2.main(new String[0]); }
+    public void button3Pressed() { Units.Unit3.main(new String[0]); }
+    public void button4Pressed() { }
+
+    public static void main (String args[]) {
         new GUI();
     }
 
     public void actionPerformed(ActionEvent e) {
-        Units.Unit1.main(new String[0]);
+        
     }
+
+    
 }
