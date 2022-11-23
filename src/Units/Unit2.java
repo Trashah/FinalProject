@@ -52,11 +52,10 @@ public class Unit2 {
                 case 3:
                     return;
                 default:
-                    System.out.println("Entrada invalida");
+                    System.out.println("Entrada no valida");
                     scanner.nextLine();
                     break;
             }
-
         }
         return;
     }    

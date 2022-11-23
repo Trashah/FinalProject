@@ -5,138 +5,98 @@ import java.util.Scanner;
 
 public class Unit3 {
     
-    static Integer Elementomax;
-    static Integer Elementomin;
-    static Integer numero;
+    static Scanner scanner = new Scanner(System.in);
+    static Integer max;
+    static Integer min;
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");  
         System.out.flush(); 
     }
 
-    static void isFull(Stack<Integer> pila) {
-        if (!pila.isEmpty()) {
-            System.out.println("La pila no contiene valores");
-        }
-        else {
-            System.out.println("La pila contiene valores");
-        }
+    static void hasValues(Stack<Integer> pila) {
+        if (pila.isEmpty()) System.out.println("La pila no contiene valores");
+        else System.out.println("La pila contiene valores");
     }
     
     static void insertar(Stack<Integer> pila) {
-        for (int i=0;i<5 ;i++) {
-            Scanner pilanum = new Scanner(System.in);
-            
-            while (!pilanum.hasNextInt()) {
+        for (int i=0; i<5; i++) {
                 System.out.println("Inserte un valor entero");
-                pilanum.next();
+                int numero = Integer.parseInt(scanner.nextLine());
+                if (pila.isEmpty()) {
+                    min = numero;
+                    max = numero;
+                }
+                if (numero < min) min = numero;
+                if (numero > max) max = numero;
+                pila.push(numero);
             }
-            numero = pilanum.nextInt();
-            pila.push(numero);
-            pilanum.close(); 
-        }
-        System.out.println("La pila se ha vaciado");
     }
     
     static void vaciar(Stack<Integer> pila) {
-        while (!pila.isEmpty()) {
-            pila.pop();
-        }
+        while (!pila.isEmpty()) pila.pop();
         System.out.println("La pila se ha vaciado");
     }
 
-    static void getMin(Stack<Integer> pila) {
-        if (pila.isEmpty()) {
-            System.out.println("La pila está vacía");
-        }
-
-        else {
-            Elementomin = pila.peek();
-            while (!pila.isEmpty()) {
-                numero = pila.peek();
-                if (numero<Elementomin) {
-                    Elementomin = numero;
-                }
-                pila.pop();
-            }
-            System.out.println("El elemento mínimo en la pila es: "+Elementomin);
-        }
+    static void getMin(Stack<Integer> pila) { 
+        if (!pila.isEmpty()) System.out.println("El elemento mínimo en la pila es: "+ min);
+        else System.out.println ("La pila esta vacia");
     }
 
-    static void getMax(Stack<Integer> pila) {
-        if (pila.isEmpty()) {
-            System.out.println("La pila está vacía");
-        }
-
-        else {
-            Elementomax = pila.peek();
-            while (!pila.isEmpty()) {
-                numero = pila.peek();
-                if (numero>Elementomax) {
-                    Elementomin = numero;
-                }
-                pila.pop();
-            }
-            System.out.println("El elemento mínimo en la pila es: "+Elementomax);
-        }
+    static void getMax(Stack<Integer> pila) { 
+        if (!pila.isEmpty()) System.out.println("El elemento mínimo en la pila es: " + max);
+        else System.out.println ("La pila esta vacia");
     }
 
     static void displaymenu() {
-        System.out.println("[1]Insertar 5 valores en la pila");
-        System.out.println("[2]Vaciar la pila");
-        System.out.println("[3]Revisar si la pila se encuentra llena");
-        System.out.println("[4]Obtener el valor mínimo de la pila");
-        System.out.println("[5]Obtener el valor máximo de la pila");
-        System.out.println("[6]Cerrar programa");
+        System.out.println("Elija una opción");
+        System.out.println("[1] Insertar 5 valores en la pila");
+        System.out.println("[2] Vaciar la pila");
+        System.out.println("[3] Revisar si la pila contiene valores");
+        System.out.println("[4] Obtener el valor mínimo de la pila");
+        System.out.println("[5] Obtener el valor máximo de la pila");
+        System.out.println("[6] Cerrar programa");
     }
 
     public static void main(String args[]) {
 
         Stack<Integer> pila = new Stack<Integer>();
+        int opcionMenu = 0;
 
-        System.out.println("Elija una opción");
-        displaymenu();
-
-        Scanner opcion = new Scanner(System.in);
-        
-        while (!opcion.hasNextInt()) {
-            System.out.println("Inserte un valor entero");
-            opcion.next();
-        }
-              
-        int opcionmenu = opcion.nextInt();
-
-        while (opcionmenu!=6) {
-            switch(opcionmenu) {
+        while (opcionMenu != 6) {
+            clearScreen();
+            displaymenu();
+            opcionMenu = Integer.parseInt(scanner.nextLine());
+            clearScreen();
+            switch(opcionMenu) {
             case 1:
                 insertar(pila);
                 break;
             case 2:
                 vaciar(pila);
+                scanner.nextLine();
                 break;
             case 3:
-                isFull(pila);
+                hasValues(pila);
+                scanner.nextLine();
                 break;
             case 4:
                 getMin(pila);
+                scanner.nextLine();
                 break;
             case 5:
                 getMax(pila);
+                scanner.nextLine();
+                break;
+            case 6:
                 break;
             default:
                 System.out.println("Opción no válida");
+                scanner.nextLine();
+                break;
             }
-            displaymenu();
-            opcion.nextInt();
-            while (!opcion.hasNextInt()) {
-                System.out.println("Inserte un valor entero");
-                opcion.nextInt();
-            }
-            opcionmenu = opcion.nextInt();
-            opcion.nextLine();
         }
-        opcion.nextLine();
-        opcion.close();
+        scanner.close();
         clearScreen();
         return;
     }

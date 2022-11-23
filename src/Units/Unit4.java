@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class Unit4 {
 
+    static Scanner scanner = new Scanner(System.in);
+
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");  
         System.out.flush(); 
@@ -76,13 +78,12 @@ public class Unit4 {
         return root;
     }
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
 
         BTreePrinter.printNode(test1());
         BTreePrinter.printNode(test2());
-
-        Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
+        scanner.close();
         clearScreen();
         return;
     }
